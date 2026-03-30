@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import policjaImg from './policja.png'
-import strazMiejskaImg from './strazmiejska.png'
-import strazGranicznaImg from './strazgraniczna.png'
-import kasImg from './kas.png'
-import infotechImg from './infotech.png'
+import policjaImg from './assets/policja.png'
+import strazMiejskaImg from './assets/strazmiejska.png'
+import strazGranicznaImg from './assets/strazgraniczna.png'
+import kasImg from './assets/kas.png'
+import infotechImg from './assets/infotech.png'
 import './App.css'
 
 function App() {

@@ -1,4 +1,9 @@
 import { useState } from 'react'
+import policjaImg from './policja.png'
+import strazMiejskaImg from './strazmiejska.png'
+import strazGranicznaImg from './strazgraniczna.png'
+import kasImg from './kas.png'
+import infotechImg from './infotech.png'
 import './App.css'
 
 function App() {
@@ -18,13 +23,50 @@ function App() {
     reportedPerson: ''
   })
 
-  const departments = [
-    { id: 'police', name: 'Policja', icon: '🚔', color: '#0066FF' },
-    { id: 'city-guard', name: 'Straż Miejska', icon: '🏛️', color: '#00D4FF' },
-    { id: 'border-guard', name: 'Straż Graniczna', icon: '🛂', color: '#00B8D4' },
-    { id: 'kas', name: 'Krajowa Administracja Skarbowa', icon: '💼', color: '#0099CC' },
-    { id: 'infotech', name: 'Infotech School', icon: '🎓', color: '#00C4B4' }
+  /*
+  const departmentsLegacy = [
+    { id: 'police', name: 'Policja', icon: 'policja.png', color: '#0066FF' },
+    { id: 'city-guard', name: 'Straż Miejska', icon: 'strazmiejska.png', color: '#00D4FF' },
+    { id: 'border-guard', name: 'Straż Graniczna', icon: 'strazgraniczna.png', color: '#00B8D4' },
+    { id: 'kas', name: 'Krajowa Administracja Skarbowa', icon: 'kas.png', color: '#0099CC' },
+    { id: 'infotech', name: 'Infotech School', icon: 'infotech.png', color: '#00C4B4' }
   ]
+  */
+
+  const departments = [
+    { id: 'police', name: 'Policja', icon: policjaImg, color: '#0066FF' },
+    { id: 'city-guard', name: 'Straż Miejska', icon: strazMiejskaImg, color: '#00D4FF' },
+    { id: 'border-guard', name: 'Straż Graniczna', icon: strazGranicznaImg, color: '#00B8D4' },
+    { id: 'kas', name: 'Krajowa Administracja Skarbowa', icon: kasImg, color: '#0099CC' },
+    { id: 'infotech', name: 'Infotech School', icon: infotechImg, color: '#00C4B4' }
+  ]
+
+  const departmentThemes = {
+    police: { color: '#1E5BFF', rgb: '30, 91, 255' },
+    'city-guard': { color: '#F2C200', rgb: '242, 194, 0' },
+    'border-guard': { color: '#6B7F2A', rgb: '107, 127, 42' },
+    kas: { color: '#003A79', rgb: '0, 58, 121' },
+    infotech: { color: '#D52B2B', rgb: '213, 43, 43' }
+  }
+
+  const defaultTheme = { color: '#00D4FF', rgb: '0, 212, 255' }
+
+  const getThemeVars = (deptId) => {
+    const theme = deptId ? departmentThemes[deptId] : null
+    const activeTheme = theme ?? defaultTheme
+    return {
+      '--theme-color': activeTheme.color,
+      '--theme-rgb': activeTheme.rgb
+    }
+  }
+
+  const getDeptVars = (deptId) => {
+    const theme = departmentThemes[deptId] ?? defaultTheme
+    return {
+      '--dept-color': theme.color,
+      '--dept-rgb': theme.rgb
+    }
+  }
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -58,7 +100,7 @@ function App() {
     const selectedDept = departments.find(d => d.id === selectedDepartment)
 
     return (
-      <div className="app-container">
+      <div className="app-container" style={getThemeVars(selectedDepartment)}>
         <header className="app-header">
           <div className="logo-container">
             <div className="logo-icon">🔒</div>
@@ -80,7 +122,10 @@ function App() {
               {selectedDept && (
                 <div className="summary-item">
                   <span className="summary-label">Departament:</span>
-                  <span className="summary-value">{selectedDept.icon} {selectedDept.name}</span>
+                  <span className="summary-value summary-dept">
+                    <img className="summary-icon" src={selectedDept.icon} alt={selectedDept.name} />
+                    {selectedDept.name}
+                  </span>
                 </div>
               )}
 
@@ -131,7 +176,7 @@ function App() {
   }
 
   return (
-    <div className="app-container">
+    <div className="app-container" style={getThemeVars(selectedDepartment)}>
       <header className="app-header">
         <div className="logo-container">
           <div className="logo-icon">🔒</div>
@@ -148,9 +193,11 @@ function App() {
                 key={dept.id}
                 className={`department-card ${selectedDepartment === dept.id ? 'selected' : ''}`}
                 onClick={() => setSelectedDepartment(dept.id)}
-                style={{ '--dept-color': dept.color }}
+                style={getDeptVars(dept.id)}
               >
-                <div className="department-icon">{dept.icon}</div>
+                <div className="department-icon">
+                  <img className="department-icon-img" src={dept.icon} alt={dept.name} />
+                </div>
                 <span className="department-name">{dept.name}</span>
               </button>
             ))}

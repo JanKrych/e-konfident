@@ -6,7 +6,9 @@
 
 .app-container {
   min-height: 100vh;
-  background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 100%);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(var(--theme-rgb), 0.25) 0%, transparent 45%),
+    linear-gradient(180deg, #0a0e27 0%, #0b0f1f 100%);
   color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
@@ -21,8 +23,8 @@
   width: 100%;
   height: 100%;
   background:
-    radial-gradient(circle at 20% 50%, rgba(0, 180, 216, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgba(var(--theme-rgb), 0.18) 0%, transparent 52%),
+    radial-gradient(circle at 80% 80%, rgba(var(--theme-rgb), 0.12) 0%, transparent 55%);
   animation: bgPulse 8s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
@@ -73,7 +75,7 @@
 
 .logo-icon {
   font-size: 48px;
-  filter: drop-shadow(0 4px 20px rgba(0, 180, 216, 0.5));
+  filter: drop-shadow(0 4px 20px rgba(var(--theme-rgb), 0.5));
   animation: rotate3d 3s ease-in-out infinite;
 }
 
@@ -96,7 +98,7 @@
   font-size: 42px;
   font-weight: 700;
   letter-spacing: -0.5px;
-  background: linear-gradient(135deg, #00d4ff 0%, #00b8d4 50%, #00d4ff 100%);
+  background: linear-gradient(135deg, var(--theme-color) 0%, rgba(var(--theme-rgb), 0.6) 50%, var(--theme-color) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -169,7 +171,7 @@
   left: 0;
   width: 0;
   height: 3px;
-  background: linear-gradient(90deg, #00d4ff, #00b8d4);
+  background: linear-gradient(90deg, var(--theme-color), rgba(var(--theme-rgb), 0.7));
   animation: expandLine 0.8s ease-out forwards;
   animation-delay: 0.3s;
   border-radius: 2px;
@@ -265,29 +267,39 @@
 
 .department-card:hover {
   transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 20px 60px rgba(0, 180, 216, 0.6);
+  box-shadow: 0 20px 60px rgba(var(--dept-rgb), 0.6);
   background: rgba(255, 255, 255, 0.08);
 }
 
 .department-card.selected {
-  background: linear-gradient(135deg, rgba(0, 180, 216, 0.2) 0%, rgba(0, 102, 255, 0.1) 100%);
-  box-shadow: 0 8px 32px rgba(0, 180, 216, 0.6), inset 0 0 20px rgba(0, 180, 216, 0.1);
+  background: linear-gradient(135deg, rgba(var(--dept-rgb), 0.22) 0%, rgba(var(--dept-rgb), 0.12) 100%);
+  box-shadow: 0 8px 32px rgba(var(--dept-rgb), 0.6), inset 0 0 20px rgba(var(--dept-rgb), 0.12);
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
   0%, 100% {
-    box-shadow: 0 8px 32px rgba(0, 180, 216, 0.6), inset 0 0 20px rgba(0, 180, 216, 0.1);
+    box-shadow: 0 8px 32px rgba(var(--dept-rgb), 0.6), inset 0 0 20px rgba(var(--dept-rgb), 0.12);
   }
   50% {
-    box-shadow: 0 12px 48px rgba(0, 180, 216, 0.8), inset 0 0 30px rgba(0, 180, 216, 0.2);
+    box-shadow: 0 12px 48px rgba(var(--dept-rgb), 0.8), inset 0 0 30px rgba(var(--dept-rgb), 0.24);
   }
 }
 
 .department-icon {
-  font-size: 48px;
-  filter: drop-shadow(0 4px 12px rgba(0, 180, 216, 0.3));
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 12px rgba(var(--dept-rgb), 0.4));
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.department-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .department-card:hover .department-icon {
@@ -372,26 +384,26 @@
 }
 
 .toggle-switch input:checked + .toggle-slider {
-  background: linear-gradient(135deg, #00d4ff 0%, #00b8d4 100%);
-  box-shadow: 0 0 20px rgba(0, 180, 216, 0.5);
+  background: linear-gradient(135deg, var(--theme-color) 0%, rgba(var(--theme-rgb), 0.7) 100%);
+  box-shadow: 0 0 20px rgba(var(--theme-rgb), 0.5);
   animation: toggleGlow 0.6s ease-out;
 }
 
 @keyframes toggleGlow {
   0% {
-    box-shadow: 0 0 0 rgba(0, 180, 216, 0);
+    box-shadow: 0 0 0 rgba(var(--theme-rgb), 0);
   }
   50% {
-    box-shadow: 0 0 40px rgba(0, 180, 216, 0.8);
+    box-shadow: 0 0 40px rgba(var(--theme-rgb), 0.8);
   }
   100% {
-    box-shadow: 0 0 20px rgba(0, 180, 216, 0.5);
+    box-shadow: 0 0 20px rgba(var(--theme-rgb), 0.5);
   }
 }
 
 .toggle-switch input:checked + .toggle-slider::before {
   transform: translateX(24px) rotate(360deg);
-  box-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+  box-shadow: 0 0 10px rgba(var(--theme-rgb), 0.6);
 }
 
 .contact-section {
@@ -453,19 +465,19 @@
 .glass-input input:focus,
 .glass-input textarea:focus {
   outline: none;
-  border-color: #00b8d4;
+  border-color: var(--theme-color);
   background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.2), 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 4px rgba(var(--theme-rgb), 0.2), 0 8px 32px rgba(0, 0, 0, 0.3);
   transform: scale(1.02);
   animation: glowPulse 1.5s ease-in-out infinite;
 }
 
 @keyframes glowPulse {
   0%, 100% {
-    box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.2), 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 4px rgba(var(--theme-rgb), 0.2), 0 8px 32px rgba(0, 0, 0, 0.3);
   }
   50% {
-    box-shadow: 0 0 0 6px rgba(0, 180, 216, 0.3), 0 12px 48px rgba(0, 180, 216, 0.4);
+    box-shadow: 0 0 0 6px rgba(var(--theme-rgb), 0.3), 0 12px 48px rgba(var(--theme-rgb), 0.4);
   }
 }
 
@@ -477,7 +489,7 @@
 
 .submit-button {
   width: 100%;
-  background: linear-gradient(135deg, #00d4ff 0%, #00b8d4 100%);
+  background: linear-gradient(135deg, var(--theme-color) 0%, rgba(var(--theme-rgb), 0.7) 100%);
   border: none;
   border-radius: 20px;
   padding: 20px 40px;
@@ -489,7 +501,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  box-shadow: 0 8px 32px rgba(0, 180, 216, 0.4);
+  box-shadow: 0 8px 32px rgba(var(--theme-rgb), 0.4);
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   position: relative;
   overflow: hidden;
@@ -528,7 +540,7 @@
 
 .submit-button:hover {
   transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 16px 48px rgba(0, 180, 216, 0.8);
+  box-shadow: 0 16px 48px rgba(var(--theme-rgb), 0.8);
 }
 
 .submit-button:active {
@@ -591,7 +603,7 @@
   font-size: 120px;
   margin-bottom: 32px;
   animation: successIcon 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  filter: drop-shadow(0 8px 32px rgba(0, 180, 216, 0.6));
+  filter: drop-shadow(0 8px 32px rgba(var(--theme-rgb), 0.6));
 }
 
 @keyframes successIcon {
@@ -612,7 +624,7 @@
   font-size: 42px;
   font-weight: 700;
   margin-bottom: 24px;
-  background: linear-gradient(135deg, #00d4ff 0%, #00b8d4 100%);
+  background: linear-gradient(135deg, var(--theme-color) 0%, rgba(var(--theme-rgb), 0.7) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -684,7 +696,7 @@
 .summary-title {
   font-size: 24px;
   font-weight: 600;
-  color: #00d4ff;
+  color: var(--theme-color);
   margin-bottom: 24px;
   text-align: center;
 }
@@ -717,6 +729,19 @@
   color: #ffffff;
   line-height: 1.6;
   word-wrap: break-word;
+}
+
+.summary-dept {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.summary-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex: 0 0 auto;
 }
 
 .contact-summary {
@@ -765,7 +790,8 @@
   }
 
   .department-icon {
-    font-size: 40px;
+    width: 52px;
+    height: 52px;
   }
 
   .department-name {

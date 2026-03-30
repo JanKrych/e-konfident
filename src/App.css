@@ -4,11 +4,25 @@
   box-sizing: border-box;
 }
 
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #0a0e27;
+}
+
+#root {
+  display: block !important;
+  max-width: 100% !important;
+  text-align: left;
+}
+
 .app-container {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 15% 20%, rgba(var(--theme-rgb), 0.25) 0%, transparent 45%),
-    linear-gradient(180deg, #0a0e27 0%, #0b0f1f 100%);
+          radial-gradient(circle at 15% 20%, rgba(var(--theme-rgb), 0.25) 0%, transparent 45%),
+          linear-gradient(180deg, #0a0e27 0%, #0b0f1f 100%);
   color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
@@ -23,8 +37,8 @@
   width: 100%;
   height: 100%;
   background:
-    radial-gradient(circle at 20% 50%, rgba(var(--theme-rgb), 0.18) 0%, transparent 52%),
-    radial-gradient(circle at 80% 80%, rgba(var(--theme-rgb), 0.12) 0%, transparent 55%);
+          radial-gradient(circle at 20% 50%, rgba(var(--theme-rgb), 0.18) 0%, transparent 52%),
+          radial-gradient(circle at 80% 80%, rgba(var(--theme-rgb), 0.12) 0%, transparent 55%);
   animation: bgPulse 8s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
@@ -104,6 +118,8 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradientShift 3s ease infinite;
+  line-height: 1.2;
+  padding: 5px 10px;
 }
 
 @keyframes gradientShift {
